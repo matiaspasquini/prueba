@@ -4,7 +4,7 @@ import { FaPaw } from "react-icons/fa";
 
 export default function CallToAction() {
   return (
-    <section className="relative bg-gradient-to-r from-white via-teal-50 to-white py-16 px-6 text-center overflow-hidden rounded-2xl shadow-md mt-12">
+    <section id="contact" className="relative bg-gradient-to-r from-white via-teal-50 to-white py-16 px-6 text-center overflow-hidden rounded-2xl shadow-md mt-12">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

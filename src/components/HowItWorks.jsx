@@ -23,7 +23,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-16 px-4 bg-slate-50">
+    <section id="how-it-works" className="py-16 px-4 bg-slate-50">
       <div className="max-w-6xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
