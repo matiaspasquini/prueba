@@ -1,4 +1,4 @@
-// src/components/CallToAction.jsx
+
 import { motion } from "framer-motion";
 import { FaPaw } from "react-icons/fa";
 

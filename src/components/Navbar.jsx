@@ -1,47 +1,56 @@
 import { useState } from "react";
+import { Link } from "react-scroll";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaBars, FaTimes } from "react-icons/fa";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const menuItems = [
-    { label: "Cómo funciona", href: "#how-it-works" },
-    { label: "Preguntas", href: "#faq" },
-    { label: "Contacto", href: "#contact" },
-  ];
-
   return (
-    <nav className="w-full fixed top-0 left-0 bg-white/80 backdrop-blur-md z-50 shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-        <span className="text-lg sm:text-xl font-bold text-teal-600">
-          Identy Puppy
-        </span>
+    <nav className="fixed top-0 left-0 w-full bg-white/90 shadow-md z-50">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        {/* Logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <img
+            src={logo}
+            alt="Identy Tag Logo"
+            className="w-28 md:w-36 object-contain"
+          />
+        </motion.div>
 
-        {/* Desktop Menu */}
-        <ul className="hidden sm:flex space-x-6 text-slate-700 font-medium">
-          {menuItems.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                className="hover:text-teal-500 transition-colors"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        {/* Mobile Hamburger Icon */}
+        {/* Mobile Menu Button */}
         <button
-          className="sm:hidden text-slate-700 text-xl focus:outline-none"
+          className="md:hidden text-gray-800 focus:outline-none text-2xl"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <FaTimes /> : <FaBars />}
+          ☰
         </button>
+
+        {/* Desktop Nav Items */}
+        <ul className="hidden md:flex space-x-6 text-gray-800 font-medium">
+          <li>
+            <Link to="how" smooth duration={500} className="cursor-pointer hover:text-teal-500">
+              Cómo Funciona
+            </Link>
+          </li>
+          <li>
+            <Link to="faq" smooth duration={500} className="cursor-pointer hover:text-teal-500">
+              Preguntas
+            </Link>
+          </li>
+          <li>
+            <Link to="contact" smooth duration={500} className="cursor-pointer hover:text-teal-500">
+              Contacto
+            </Link>
+          </li>
+        </ul>
       </div>
 
-      {/* Mobile Menu (Animated) */}
+      {/* Mobile Nav Items */}
       <AnimatePresence>
         {isOpen && (
           <motion.ul
@@ -49,19 +58,23 @@ const Navbar = () => {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="sm:hidden bg-white px-6 pb-4 flex flex-col gap-4 text-slate-700 font-medium"
+            className="md:hidden flex flex-col items-center bg-white shadow-md px-6 py-4 space-y-4 text-gray-800 font-medium"
           >
-            {menuItems.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block w-full hover:text-teal-500 transition-colors"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+            <li>
+              <Link to="how" smooth duration={500} className="cursor-pointer hover:text-teal-500" onClick={() => setIsOpen(false)}>
+                Cómo Funciona
+              </Link>
+            </li>
+            <li>
+              <Link to="faq" smooth duration={500} className="cursor-pointer hover:text-teal-500" onClick={() => setIsOpen(false)}>
+                Preguntas
+              </Link>
+            </li>
+            <li>
+              <Link to="contact" smooth duration={500} className="cursor-pointer hover:text-teal-500" onClick={() => setIsOpen(false)}>
+                Contacto
+              </Link>
+            </li>
           </motion.ul>
         )}
       </AnimatePresence>
